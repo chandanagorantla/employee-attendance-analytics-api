@@ -15,6 +15,7 @@ from datetime import datetime, date, time, timedelta, timezone
 from decimal import Decimal, ROUND_HALF_UP
 from typing import Optional, Literal
 
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Query
 from pydantic import (
@@ -42,10 +43,20 @@ UTC = timezone.utc
 PRESENCE = {"PRESENT", "WFH", "ON_DUTY"}
 STATUSES = {"PRESENT", "WFH", "ON_DUTY", "ABSENT", "LEAVE"}
 
-app = FastAPI(
-    title="Employee Attendance & Analytics API",
-    version="2.0.0",
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://127.0.0.1:5500",
+        "http://localhost:5500",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
+
 
 
 @app.on_event("startup")

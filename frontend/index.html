@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendly | Employee Attendance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <h2>Attendly<span>.</span></h2>
+        <p class="menu-label">WORKSPACE</p>
+        <button class="nav-item active" data-page="dashboard">▦ &nbsp; Dashboard</button>
+        <button class="nav-item" data-page="employees">♙ &nbsp; Employees</button>
+        <button class="nav-item" data-page="attendance">◷ &nbsp; Attendance</button>
+        <button class="nav-item" data-page="analytics">▥ &nbsp; Analytics</button>
+        <div class="sidebar-bottom">Employee Management<br><small>Attendance & Analytics API</small></div>
+    </aside>
+
+    <main class="main">
+        <header>
+            <div>
+                <p class="eyebrow">WORKSPACE / OVERVIEW</p>
+                <h1 id="page-title">Dashboard</h1>
+                <p class="subtitle">Welcome back! Here's your workforce overview.</p>
+            </div>
+            <div class="connection"><span class="dot"></span><span id="connection-text">Checking API...</span></div>
+        </header>
+
+        <section class="cards">
+            <article class="stat-card"><p>Total Employees</p><h2 id="employee-count">—</h2><small>Registered workforce</small></article>
+            <article class="stat-card"><p>Attendance Records</p><h2 id="attendance-count">—</h2><small>Records in current API page</small></article>
+            <article class="stat-card"><p>Late Arrivals</p><h2 id="late-count">—</h2><small>Late records loaded</small></article>
+            <article class="stat-card"><p>Average Work Hours</p><h2 id="work-hours">—</h2><small>Across loaded records</small></article>
+        </section>
+
+        <section class="panel">
+            <div class="panel-heading">
+                <div><h2 id="table-title">Recent Attendance</h2><p>Live data from your FastAPI backend</p></div>
+                <button id="refresh-btn" class="primary">↻ Refresh Data</button>
+            </div>
+            <div id="message" class="message">Connecting to the API...</div>
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>EMPLOYEE</th><th>DATE</th><th>STATUS</th><th>WORK HOURS</th><th>LATE (MIN)</th></tr></thead>
+                    <tbody id="attendance-body"><tr><td colspan="5">Loading records...</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="panel analytics-panel">
+            <div class="panel-heading"><div><h2>Analytics</h2><p>Explore monthly attendance insights</p></div></div>
+            <div class="analytics-controls">
+                <label>Month <input id="month-input" type="month" value="2026-10"></label>
+                <label>Employee code <input id="emp-code" placeholder="EMP9999"></label>
+                <button id="monthly-btn" class="primary">View Monthly Report</button>
+            </div>
+            <pre id="analytics-result">Select an employee code and click View Monthly Report.</pre>
+        </section>
+
+        <footer>Attendly · Employee Attendance & Analytics · FastAPI + MongoDB</footer>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
